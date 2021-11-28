@@ -13,6 +13,7 @@ textarea{
   padding: 10px;
 }
 
+
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -30,16 +31,25 @@ textarea{
   border-radius: 15px;
 }
 
+/*  main styles */
 .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;;
 }
 
-.hour {
+.hour-col {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  min-height: 110px;
+
+}
+
+.hour {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .past {
@@ -68,4 +78,16 @@ textarea{
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+
+.task-area{
+  min-height: 110px;
+  background-color: #c3c3c3;
+}
+
+.icon {
+  /* because oi class has position relative already */
+  top: 38px;
+  font-size: 2rem;
 }

@@ -18,6 +18,8 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+    <!-- open iconic paired with bootstrap link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Work Day Scheduler</title>
   </head>
@@ -28,11 +30,97 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
-    <div class="container">
+
+    <main class="container mb-5">
       <!-- Timeblocks go here -->
-    </div>
+      <!-- 9am -->
+      <div class="row">
+        <div class="col hour-col text-right">
+          <p class="hour">9AM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+      <!-- 10am -->
+      <div class="row mt-5">
+        <div class="col hour-col text-right">
+          <p class="hour">10AM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+      <!-- 11am -->
+      <div class="row mt-5">
+        <div class="col hour-col text-right">
+          <p class="hour">11AM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+      <!-- 12pm -->
+      <div class="row mt-5">
+        <div class="col hour-col text-right">
+          <p class="hour">12PM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+      <!-- 1pm -->
+      <div class="row mt-5">
+        <div class="col hour-col text-right">
+          <p class="hour">1PM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+      <!-- 2pm -->
+      <div class="row mt-5">
+        <div class="col hour-col text-right">
+          <p class="hour">2PM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+      <!-- 3pm -->
+      <div class="row mt-5">
+        <div class="col hour-col text-right">
+          <p class="hour">3PM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+      <!-- 4pm -->
+      <div class="row mt-5">
+        <div class="col hour-col text-right">
+          <p class="hour">4PM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+      <!-- 5pm -->
+      <div class="row mt-5">
+        <div class="col hour-col text-right">
+          <p class="hour">5PM</p>
+        </div>
+        <div class="col-10 task-area"></div>
+        <div class="col saveBtn text-center"><span class="oi oi-check icon"></span></div>
+      </div>
+
+
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- bootstrap script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
