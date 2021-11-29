@@ -8,6 +8,8 @@ function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+
+
 // loads the task descriptions back from local storage
 function loadTasks() {
     tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -31,8 +33,13 @@ function loadTasks() {
 }
 
 
-// click on task, replaces with textarea
-$(".row").on("click", "p", function() {
+// click on task p element, replaces with textarea
+$(".row").on("click", ".task-area", function() {
+
+    // the custom data attribute needs to travel to
+    // the new textarea element
+    var dataAttr = $(this).data("row");
+
     // get current text of task area
     var text = $(this).text().trim();
 
@@ -41,9 +48,18 @@ $(".row").on("click", "p", function() {
     if($(this).hasClass("past")){
         color = "#c3c3c3";
     }
+    else if($(this).hasClass("present")){
+        color = "#ff6961";
+    }
+    else {
+        color = "#77dd77";
+    }
 
     var textBox = $("<textarea>")
     .attr("type", "text")
+    // sets data attribute so we can pass it back to the new
+    // p in the next function below.
+    .attr("data-row", dataAttr)
     .addClass("form-control col-10")
     .val(text);
 
@@ -59,7 +75,15 @@ $(".row").on("click", "p", function() {
     // function to change back to p after the click off below
 })
 
+// textarea is dynamically generated, so we need to use 
+// event delegation. This checks for textareas that are within a 
+// row, whether they have been created yet or not.
 $(".row").on("blur", "textarea", function() {
+
+    // the custom data attibute we passed in the textarea
+    // in the last function
+    // is now going to get passed into the new p
+    var dataAttr = $(this).data("row");
 
     var newText = $(this).val().trim();
 
@@ -72,15 +96,28 @@ $(".row").on("blur", "textarea", function() {
 
     var newPTask = $("<p>")
     .addClass("col-10 task-area")
+    // here is where we set it again with the same value
+    .attr("data-row", dataAttr)
     .text(newText);
 
     $(this).replaceWith(newPTask);
+
+    // check time checks to see what color to make the
+    // p element based on the time of the day.
+    // before, present, after current time.
+    // we call it after the new p is made so that the 
+    // color will be set back to the way it was.
+    // check time uses the p element's custom data attribute
+    // to figure out which row it is in and which p to change.
+    checkTime();
+
 })
 
 
 
 // When save button is clicked, save tasks
 // to localStorage
+// save only happens when button is clicked.
 $(".saveBtn").on("click", saveTasks);
 
 
@@ -98,7 +135,7 @@ function currDay() {
 // and time slots to decide what bg color to give each section
 function checkTime() {
     // gets current time
-    var currTime = moment().subtract(9, "hours");
+    var currTime = moment();
 
     // this function runs through each element with the class
     // of hour in the DOM and provides an index of which 
@@ -129,7 +166,13 @@ function checkTime() {
         // flatly 9:00 or 6:00 etc. so I check first to see if
         // the current time is in between 2 of the time slots.
         // then after it checks if there are timeslots in the 
-        // past or the future
+        // past or the future.
+
+        // both of these variables are moment objects, they
+        // must be moment objects in order to use moment
+        // methods like isBetween() etc. Thats why you cant turn the
+        // variables into strings with something like
+        // moment().format()
         if(currTime.isBetween(compare, addComp)){
             // changes bg color
             $("p[data-row='" + i + "']").addClass("present");
@@ -145,9 +188,21 @@ function checkTime() {
 }
 
 
+// set interval updates
+
+// every 10 minutes the time will be checked to update
+// the task p elements and the date at the top of the screen
+// in the header
+setInterval(function() {
+    checkTime();
+    currDay();
+    console.log("ran");
+}, 600000);
+
 
 
 // events
+// on refresh these functions will run
 loadTasks();
 currDay();
 checkTime();
