@@ -63,6 +63,7 @@ $(".row").on("click", ".task-area", function() {
     .addClass("form-control col-10")
     .val(text);
 
+
     // need to do this for some reason to get it to work on
     // text area or inputs.
     textBox.css("background", color);
@@ -142,6 +143,16 @@ function checkTime() {
     // element it is currently on
     $(".hour").each(function (i) {
 
+        // task p in same row as hour element, found by index
+        // which we put in custom data attribute
+        // removes current task's bg color so it can
+        // re add the relevant color based on time
+        // everytime an update happens and this function
+        // runs.
+        $("p[data-row='" + i + "']").removeClass("past");
+        $("p[data-row='" + i + "']").removeClass("present");
+        $("p[data-row='" + i + "']").removeClass("future");
+        
         time = "";
 
         // This is for all the AM timeslots
@@ -196,7 +207,6 @@ function checkTime() {
 setInterval(function() {
     checkTime();
     currDay();
-    console.log("ran");
 }, 600000);
 
 
